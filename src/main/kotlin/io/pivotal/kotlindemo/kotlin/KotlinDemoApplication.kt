@@ -1,4 +1,4 @@
-package io.pivotal.kotlindemo
+package io.pivotal.kotlindemo.kotlin
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
