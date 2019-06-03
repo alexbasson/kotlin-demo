@@ -26,7 +26,7 @@ class FakeAccountRepository: AccountRepository {
     }
 
     override fun findByClientId(clientId: Long): List<Account> {
-        return accountsMap.values.filter { it -> it.clientId == clientId }
+        return accountsMap.values.filter { it.clientId == clientId }
     }
 
 }
