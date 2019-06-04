@@ -2,13 +2,13 @@ import {AccountService, GetAccountsForClientIdResultHandler} from "./AccountServ
 
 export class DefaultAccountService implements AccountService {
 
-    private baseUrl = 'http://localhost:8080/api';
+  private baseUrl = 'http://localhost:8080/api';
 
-    getAccountsForClientId(clientId: string, resultHandler: GetAccountsForClientIdResultHandler): void {
-        fetch(this.baseUrl + `/clients/${clientId}/accounts`)
-            .then(response => response.json())
-            .then(accounts => resultHandler.success(accounts))
-            .catch(error => console.log(error));
-    }
+  getAccountsForClientId(clientId: string, resultHandler: GetAccountsForClientIdResultHandler): void {
+    fetch(this.baseUrl + `/clients/${clientId}/accounts`)
+      .then(response => response.json())
+      .then(accounts => resultHandler.success(accounts))
+      .catch(error => console.log(error));
+  }
 
 }
