@@ -20,10 +20,6 @@ class AccountsController(private val accountRepository: AccountRepository) {
         }
     }
 
-//    @GetMapping
-//    fun getByClientId(@RequestParam clientId: Long) =
-//        ResponseEntity.ok(accountRepository.findByClientId(clientId))
-
     @PostMapping
     fun create(@RequestBody createAccountRequest: CreateAccountRequest) =
         ResponseEntity(accountRepository.create(createAccountRequest), HttpStatus.CREATED)

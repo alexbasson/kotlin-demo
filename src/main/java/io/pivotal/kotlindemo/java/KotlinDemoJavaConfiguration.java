@@ -12,12 +12,16 @@ public class KotlinDemoJavaConfiguration {
 
     @Bean
     public AccountRepository accountRepository() {
-        return new DefaultAccountRepository();
+        DefaultAccountRepository accountRepository = new DefaultAccountRepository();
+        accountRepository.initialSeed();
+        return accountRepository;
     }
 
     @Bean
     public ClientRepository clientRepository() {
-        return new DefaultClientRepository();
+        DefaultClientRepository clientRepository = new DefaultClientRepository();
+        clientRepository.initialSeed();
+        return clientRepository;
     }
 
 }

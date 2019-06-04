@@ -11,9 +11,17 @@ import org.springframework.context.annotation.Configuration
 class KotlinDemoKotlinConfiguration {
 
     @Bean
-    fun accountRepository(): AccountRepository = DefaultAccountRepository()
+    fun accountRepository(): AccountRepository {
+        val accountRepository = DefaultAccountRepository()
+        accountRepository.initialSeed()
+        return accountRepository
+    }
 
     @Bean
-    fun clientRepository(): ClientRepository = DefaultClientRepository()
+    fun clientRepository(): ClientRepository {
+        val clientRepository = DefaultClientRepository()
+        clientRepository.initialSeed()
+        return clientRepository
+    }
 
 }

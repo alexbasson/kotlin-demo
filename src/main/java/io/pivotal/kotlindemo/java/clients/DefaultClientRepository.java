@@ -6,6 +6,11 @@ import java.util.stream.Collectors;
 public class DefaultClientRepository implements ClientRepository {
     private Map<Long, Client> clientsMap = new HashMap<>();
 
+    public static final Client alice = new Client(1L, "Alice", "Jones", "alice.jones@email.com");
+    public static final Client betty = new Client(2L, "Betty", "Smith", "betty.smith@email.com");
+    public static final Client charles = new Client(3L, "Charles", "Turner", "charles.turner@email.com");
+    public static final Client david = new Client(4L, "David", "Brown", "david.brown@email.com");
+
     @Override
     public Client create(CreateClientRequest createClientRequest) {
         Long id = (long) clientsMap.values().size();
@@ -44,5 +49,12 @@ public class DefaultClientRepository implements ClientRepository {
     @Override
     public Optional<Client> findByEmail(String email) {
         return clientsMap.values().stream().filter(client -> client.getEmail().equals(email)).findFirst();
+    }
+
+    public void initialSeed() {
+        clientsMap.put(alice.getId(), alice);
+        clientsMap.put(betty.getId(), betty);
+        clientsMap.put(charles.getId(), charles);
+        clientsMap.put(david.getId(), david);
     }
 }

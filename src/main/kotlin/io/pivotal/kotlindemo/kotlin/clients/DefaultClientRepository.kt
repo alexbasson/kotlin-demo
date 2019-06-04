@@ -3,6 +3,13 @@ package io.pivotal.kotlindemo.kotlin.clients
 class DefaultClientRepository: ClientRepository {
     private val clientsMap = HashMap<Long, Client>()
 
+    companion object {
+        val alice = Client(1L, "Alice", "Jones", "alice.jones@email.com")
+        val betty = Client(2L, "Betty", "Smith", "betty.smith@email.com")
+        val charles = Client(3L, "Charles", "Turner", "charles.turner@email.com")
+        val david = Client(4L, "David", "Brown", "david.brown@email.com")
+    }
+
     override fun create(createClientRequest: CreateClientRequest): Client {
         val id = clientsMap.values.size.toLong()
         val client = Client(
@@ -29,6 +36,13 @@ class DefaultClientRepository: ClientRepository {
 
     override fun findByEmail(email: String): Client? {
         return clientsMap.values.find { it.email == email }
+    }
+
+    fun initialSeed() {
+        clientsMap.put(alice.id, alice)
+        clientsMap.put(betty.id, betty)
+        clientsMap.put(charles.id, charles)
+        clientsMap.put(david.id, david)
     }
 
 }

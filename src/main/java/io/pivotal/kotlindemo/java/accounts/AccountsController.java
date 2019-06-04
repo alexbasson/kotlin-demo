@@ -30,11 +30,6 @@ public class AccountsController {
         }
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<Account>> getByClientId(@RequestParam Long clientId) {
-//        return ResponseEntity.ok(accountRepository.findByClientId(clientId));
-//    }
-
     @PostMapping
     public ResponseEntity<Account> create(@RequestBody CreateAccountRequest createAccountRequest) {
         return new ResponseEntity<Account>(accountRepository.create(createAccountRequest), HttpStatus.CREATED);

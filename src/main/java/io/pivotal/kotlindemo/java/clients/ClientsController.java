@@ -1,5 +1,7 @@
 package io.pivotal.kotlindemo.java.clients;
 
+import io.pivotal.kotlindemo.java.accounts.Account;
+import io.pivotal.kotlindemo.java.accounts.AccountRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +12,11 @@ import java.util.List;
 public class ClientsController {
 
     private final ClientRepository clientRepository;
+    private final AccountRepository accountRepository;
 
-    public ClientsController(ClientRepository clientRepository) {
+    public ClientsController(ClientRepository clientRepository, AccountRepository accountRepository) {
         this.clientRepository = clientRepository;
+        this.accountRepository = accountRepository;
     }
 
     @GetMapping
@@ -27,6 +31,11 @@ public class ClientsController {
         } catch (NoClientFoundException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/{clientId}/accounts")
+    public ResponseEntity<List<Account>> getAccountsForClientId(@PathVariable Long clientId) {
+        return ResponseEntity.ok(accountRepository.findByClientId(clientId));
     }
 
 //    @GetMapping

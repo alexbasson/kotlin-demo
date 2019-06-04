@@ -1,11 +1,16 @@
 package io.pivotal.kotlindemo.kotlin.clients
 
+import io.pivotal.kotlindemo.kotlin.accounts.Account
+import io.pivotal.kotlindemo.kotlin.accounts.AccountRepository
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/clients")
-class ClientsController(private val clientRepository: ClientRepository) {
+class ClientsController(
+    private val clientRepository: ClientRepository,
+    private val accountRepository: AccountRepository
+) {
 
     @GetMapping
     fun getAll() = ResponseEntity.ok(clientRepository.findAll())
@@ -18,6 +23,11 @@ class ClientsController(private val clientRepository: ClientRepository) {
             return ResponseEntity.notFound().build()
         }
 
+    }
+
+    @GetMapping("/{clientId}/accounts")
+    fun getAccountsForClientId(@PathVariable clientId: Long): ResponseEntity<List<Account>> {
+        return ResponseEntity.ok(accountRepository.findByClientId(clientId))
     }
 
 //    @GetMapping
