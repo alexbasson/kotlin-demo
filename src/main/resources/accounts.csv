@@ -1,0 +1,12 @@
+Id,Client Id,Number,Full Name,Nickname,Type,Market Value
+1,1,A12345,Low-interest Checking,My Checking Account,CHECKING,239487.98
+2,1,A23456,High-interest Savings,My Savings Account,SAVINGS,1234.84
+3,2,B34567,Low-interest Savings,My Great Savings!,SAVINGS,234789.23
+4,2,B45678,Low-interest Checking,Checking Account,CHECKING,982734.81
+5,2,B56789,Credit,Home Equity loan,CREDIT,867134.34
+6,3,C87654,Investment,mutual funds and stocks,INVESTMENT,24389134.62
+7,3,C98765,Low-Interest Checking,checking,CHECKING,89743.23
+8,3,C65432,Credit,mortgage,CREDIT,13982.34
+9,4,D54321,High-interest Savings,My savings account,SAVINGS,426786.38
+10,4,D65432,Credit,My mortgage,CREDIT,4124908.52
+11,4,D76543,Investment,My investment account,INVESTMENT,1492398.28

@@ -1,11 +1,10 @@
 package io.pivotal.kotlindemo.kotlin.accounts
 
-import io.pivotal.kotlindemo.kotlin.clients.DefaultClientRepository.Companion.alice
-import io.pivotal.kotlindemo.kotlin.clients.DefaultClientRepository.Companion.betty
-import io.pivotal.kotlindemo.kotlin.clients.DefaultClientRepository.Companion.charles
-import io.pivotal.kotlindemo.kotlin.clients.DefaultClientRepository.Companion.david
+import org.apache.commons.csv.CSVFormat
+import java.io.IOException
+import java.io.InputStreamReader
 
-class DefaultAccountRepository: AccountRepository {
+class DefaultAccountRepository : AccountRepository {
     private val accountsMap = HashMap<Long, Account>()
 
     override fun create(createAccountRequest: CreateAccountRequest): Account {
@@ -35,93 +34,25 @@ class DefaultAccountRepository: AccountRepository {
     }
 
     fun initialSeed() {
-        create(CreateAccountRequest(
-            clientId = alice.id,
-            number = "A12345",
-            fullname = "Low-interest Checking",
-            nickname = "My Checking Account",
-            type = AccountType.CHECKING
-        ))
+        val classLoader = javaClass.classLoader
+        val inputStream = classLoader.getResourceAsStream("accounts.csv")
+        val input = InputStreamReader(inputStream!!)
+        try {
+            val csvParser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(input)
+            for (record in csvParser) {
+                val id = record.get("Id").toLong()
 
-        create(CreateAccountRequest(
-            clientId = alice.id,
-            number = "A23456",
-            fullname = "High-interest Savings",
-            nickname = "My Savings Account",
-            type = AccountType.SAVINGS
-        ))
-
-        create(CreateAccountRequest(
-            clientId = betty.id,
-            number = "B34567",
-            fullname = "Low-interest Savings",
-            nickname = "My Great Savings!",
-            type = AccountType.SAVINGS
-        ))
-
-        create(CreateAccountRequest(
-            clientId = betty.id,
-            number = "B45678",
-            fullname = "Low-interest Checking",
-            nickname = "Checking Account",
-            type = AccountType.CHECKING
-        ))
-
-        create(CreateAccountRequest(
-            clientId = betty.id,
-            number = "B56789",
-            fullname = "Credit",
-            nickname = "Home Equity loan",
-            type = AccountType.CREDIT
-        ))
-
-        create(CreateAccountRequest(
-            clientId = charles.id,
-            number = "C87654",
-            fullname = "Investment",
-            nickname = "mutual funds and stocks",
-            type = AccountType.INVESTMENT
-        ))
-
-        create(CreateAccountRequest(
-            clientId = charles.id,
-            number = "C98765",
-            fullname = "Low-Interest Checking",
-            nickname = "checking",
-            type = AccountType.CHECKING
-        ))
-
-        create(CreateAccountRequest(
-            clientId = charles.id,
-            number = "C65432",
-            fullname = "Credit",
-            nickname = "mortgage",
-            type = AccountType.CREDIT
-        ))
-
-        create(CreateAccountRequest(
-            clientId = david.id,
-            number = "D54321",
-            fullname = "High-interest Savings",
-            nickname = "My savings account",
-            type = AccountType.SAVINGS
-        ))
-
-        create(CreateAccountRequest(
-            clientId = david.id,
-            number = "D65432",
-            fullname = "Credit",
-            nickname = "My mortgage",
-            type = AccountType.CREDIT
-        ))
-
-        create(CreateAccountRequest(
-            clientId = david.id,
-            number = "D76543",
-            fullname = "Investment",
-            nickname = "My investment account",
-            type = AccountType.INVESTMENT
-        ))
+                accountsMap[id] = Account(
+                    id = id,
+                    clientId = record.get("Client Id").toLong(),
+                    number = record.get("Number"),
+                    fullname = record.get("Full Name"),
+                    nickname = record.get("Nickname"),
+                    type = AccountType.valueOf(record.get("Type"))
+                )
+            }
+        } catch (e: IOException) {
+        }
     }
 
 }

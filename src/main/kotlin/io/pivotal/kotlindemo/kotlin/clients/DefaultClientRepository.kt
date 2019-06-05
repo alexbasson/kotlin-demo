@@ -1,14 +1,11 @@
 package io.pivotal.kotlindemo.kotlin.clients
 
-class DefaultClientRepository: ClientRepository {
-    private val clientsMap = HashMap<Long, Client>()
+import org.apache.commons.csv.CSVFormat
+import java.io.IOException
+import java.io.InputStreamReader
 
-    companion object {
-        val alice = Client(1L, "Alice", "Jones", "alice.jones@email.com")
-        val betty = Client(2L, "Betty", "Smith", "betty.smith@email.com")
-        val charles = Client(3L, "Charles", "Turner", "charles.turner@email.com")
-        val david = Client(4L, "David", "Brown", "david.brown@email.com")
-    }
+class DefaultClientRepository : ClientRepository {
+    private val clientsMap = HashMap<Long, Client>()
 
     override fun create(createClientRequest: CreateClientRequest): Client {
         val id = clientsMap.values.size.toLong()
@@ -39,10 +36,23 @@ class DefaultClientRepository: ClientRepository {
     }
 
     fun initialSeed() {
-        clientsMap.put(alice.id, alice)
-        clientsMap.put(betty.id, betty)
-        clientsMap.put(charles.id, charles)
-        clientsMap.put(david.id, david)
+        val classLoader = javaClass.classLoader
+        val inputStream = classLoader.getResourceAsStream("clients.csv")
+        val input = InputStreamReader(inputStream!!)
+        try {
+            val csvParser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(input)
+            for (record in csvParser) {
+                val id = record.get("Id").toLong()
+
+                clientsMap[id] = Client(
+                    id = id,
+                    firstName = record.get("First Name"),
+                    lastName = record.get("Last Name"),
+                    email = record.get("Email")
+                )
+            }
+        } catch (e: IOException) {
+        }
     }
 
 }
