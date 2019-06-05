@@ -11,17 +11,23 @@ import java.util.List;
 @RequestMapping("/api/clients")
 public class ClientsController {
 
+    private final GetClientOverviews getClientOverviews;
     private final ClientRepository clientRepository;
     private final AccountRepository accountRepository;
 
-    public ClientsController(ClientRepository clientRepository, AccountRepository accountRepository) {
+    public ClientsController(
+        GetClientOverviews getClientOverviews,
+        ClientRepository clientRepository,
+        AccountRepository accountRepository
+    ) {
+        this.getClientOverviews = getClientOverviews;
         this.clientRepository = clientRepository;
         this.accountRepository = accountRepository;
     }
 
     @GetMapping
-    public ResponseEntity<List<Client>> getAll() {
-        return ResponseEntity.ok(clientRepository.findAll());
+    public ResponseEntity<List<ClientOverview>> getAll() {
+        return ResponseEntity.ok(getClientOverviews.execute());
     }
 
     @GetMapping("/{id}")

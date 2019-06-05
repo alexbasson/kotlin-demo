@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/api/clients")
 class ClientsController(
+    private val getClientOverviews: GetClientOverviews,
     private val clientRepository: ClientRepository,
     private val accountRepository: AccountRepository
 ) {
 
     @GetMapping
-    fun getAll() = ResponseEntity.ok(clientRepository.findAll())
+    fun getAll() = ResponseEntity.ok(getClientOverviews.execute())
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long): ResponseEntity<Client> {

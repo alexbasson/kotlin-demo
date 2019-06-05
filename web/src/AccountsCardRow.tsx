@@ -5,7 +5,7 @@ interface Props {
   account: Account;
 }
 
-export const AccountListRow = (props: Props) => {
+export const AccountsCardRow = (props: Props) => {
   const account = props.account;
   return (
     <tr>

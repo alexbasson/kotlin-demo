@@ -1,0 +1,21 @@
+.client-overview-card ul {
+  margin: 0;
+  padding: 0;
+}
+
+.client-overview-card ul li {
+  list-style-type: none;
+}
+
+.client-overview-card li {
+  padding: 10px 5px;
+}
+
+.client-overview-card li:last-child {
+  border-bottom: none;
+}
+
+.client-overview-card p {
+  display: inline-block;
+  width: 25%
+}

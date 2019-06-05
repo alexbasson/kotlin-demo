@@ -1,13 +1,13 @@
-import {ClientService, GetClientResultHandler, GetClientsResultHandler} from "./ClientService";
+import {ClientService, GetClientResultHandler, GetClientOverviewsResultHandler} from './ClientService';
 
 export class DefaultClientService implements ClientService {
 
   private baseUrl = 'http://localhost:8080/api';
 
-  getClients(resultHandler: GetClientsResultHandler): void {
+  getClientOverviews(resultHandler: GetClientOverviewsResultHandler): void {
     fetch(this.baseUrl + '/clients')
       .then(response => response.json())
-      .then(clients => resultHandler.success(clients))
+      .then(clientOverviews => resultHandler.success(clientOverviews))
       .catch(error => console.log(error));
   }
 

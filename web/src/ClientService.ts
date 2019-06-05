@@ -1,7 +1,8 @@
-import {Client} from "./Client";
+import {Client} from './Client';
+import {ClientOverview} from './ClientOverview';
 
-export interface GetClientsResultHandler {
-  success(clients: Client[]): void;
+export interface GetClientOverviewsResultHandler {
+  success(clientOverviews: ClientOverview[]): void;
 }
 
 export interface GetClientResultHandler {
@@ -9,7 +10,7 @@ export interface GetClientResultHandler {
 }
 
 export interface ClientService {
-  getClients(resultHandler: GetClientsResultHandler): void;
+  getClientOverviews(resultHandler: GetClientOverviewsResultHandler): void;
 
   getClient(id: string, resultHandler: GetClientResultHandler): void;
 }

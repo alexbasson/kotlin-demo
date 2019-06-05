@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {ClientService, GetClientResultHandler} from './ClientService';
 import {Client} from './Client';
-import {AccountList} from "./AccountList";
-import {AccountService} from "./AccountService";
+import {AccountsCard} from './AccountsCard';
+import {AccountService} from './AccountService';
 
 interface Props {
   clientId: string;
@@ -35,7 +35,7 @@ export class ClientDetail extends React.Component<Props, State> implements GetCl
         <h1>{client.firstName} {client.lastName}</h1>
         <h2>{client.email}</h2>
 
-        <AccountList clientId={this.props.clientId} accountService={this.props.accountService}/>
+        <AccountsCard clientId={this.props.clientId} accountService={this.props.accountService}/>
       </div>
     )
   }
