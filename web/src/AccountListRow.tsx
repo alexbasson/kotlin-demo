@@ -8,8 +8,10 @@ interface Props {
 export const AccountListRow = (props: Props) => {
   const account = props.account;
   return (
-    <li>
-      {account.number} {account.type} {account.fullname}
-    </li>
+    <tr>
+      <td>{account.number}</td>
+      <td>{account.type}</td>
+      <td>{account.fullname}</td>
+    </tr>
   )
 };

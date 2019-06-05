@@ -27,9 +27,12 @@ export class ClientList extends React.Component<Props, State> implements GetClie
 
   render(): ReactElement {
     return (
-      <ul>
-        {this.state.clients.map((client) => <ClientListRow key={client.id} client={client}/>)}
-      </ul>
+      <div className="card">
+        <h3>Clients</h3>
+        <ul>
+          {this.state.clients.map((client) => <ClientListRow key={client.id} client={client}/>)}
+        </ul>
+      </div>
     );
   }
 

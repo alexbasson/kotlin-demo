@@ -33,11 +33,23 @@ export class AccountList extends React.Component<Props, State> implements GetAcc
 
   render(): ReactElement {
     return (
-      <ul>
-        {
-          this.state.accounts.map((account) => <AccountListRow key={account.id} account={account}/>)
-        }
-      </ul>
+      <div className="card">
+        <h3>Accounts</h3>
+        <table>
+          <thead>
+          <tr>
+            <th>Account #</th>
+            <th>Account Type</th>
+            <th>Full name</th>
+          </tr>
+          </thead>
+          <tbody>
+          {
+            this.state.accounts.map((account) => <AccountListRow key={account.id} account={account}/>)
+          }
+          </tbody>
+        </table>
+      </div>
     )
   }
 

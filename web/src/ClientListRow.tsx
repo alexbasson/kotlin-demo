@@ -7,9 +7,10 @@ interface Props {
 }
 
 export const ClientListRow = (props: Props): ReactElement => (
-  <li>
+  <li className="link">
     <Link to={`/clients/${props.client.id}`}>
-      {props.client.firstName} {props.client.lastName}: {props.client.email}
+      <p>{props.client.firstName} {props.client.lastName}</p>
+      <p>{props.client.email}</p>
     </Link>
   </li>
 );

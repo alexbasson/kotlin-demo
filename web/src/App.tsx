@@ -20,6 +20,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <h1>Kotlin Demo</h1>
       <Router>
         <Route exact={true} path="/" component={clientList}/>
         <Route exact={true} path="/clients" component={clientList}/>
