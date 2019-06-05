@@ -4,6 +4,7 @@ export interface Account {
   fullname: string;
   nickname: string;
   type: string;
+  marketValue: number;
 }
 
 export interface CreateAccountRequest {

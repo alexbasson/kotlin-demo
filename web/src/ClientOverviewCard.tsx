@@ -49,6 +49,7 @@ export class ClientOverviewCard
             <p className="strong align-left">Name</p>
             <p className="strong align-left">Email</p>
             <p className="strong align-center">Number of Accounts</p>
+            <p className="strong align-right">Total Market Value</p>
           </li>
           {this.state.clientOverviews.map((clientOverview) =>
             <ClientOverviewRow

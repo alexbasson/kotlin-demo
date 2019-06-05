@@ -49,9 +49,10 @@ export class AccountsCard
         <table cellPadding="0" cellSpacing="0">
           <thead>
           <tr>
-            <th>Account Number</th>
-            <th>Account Type</th>
-            <th>Full name</th>
+            <th className="align-left">Account Number</th>
+            <th className="align-left">Account Type</th>
+            <th className="align-left">Full name</th>
+            <th className="align-right">Market Value</th>
           </tr>
           </thead>
           <tbody>
