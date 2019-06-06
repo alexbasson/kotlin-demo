@@ -16,7 +16,13 @@ abstract class AccountRepositoryTest {
 
     @Test
     fun `create() adds accounts with unique ids`() {
-        val createAccountRequest1 = buildCreateAccountRequest()
+        val createAccountRequest1 = buildCreateAccountRequest(
+            clientId = 1L,
+            number = "account 1 number",
+            fullname = "account 1 full name",
+            nickname = "account 1 nickname",
+            type = AccountType.CREDIT
+        )
 
         val account1 = accountRepository.create(createAccountRequest1)
 
@@ -31,7 +37,13 @@ abstract class AccountRepositoryTest {
             "id"
         )
 
-        val createAccountRequest2 = buildCreateAccountRequest()
+        val createAccountRequest2 = buildCreateAccountRequest(
+            clientId = 2L,
+            number = "account 2 number",
+            fullname = "account 2 full name",
+            nickname = "account 2 nickname",
+            type = AccountType.INVESTMENT
+        )
 
         val account2 = accountRepository.create(createAccountRequest2)
 
