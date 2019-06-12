@@ -8,7 +8,7 @@ class DefaultClientRepository : ClientRepository {
     private val clientsMap = HashMap<Long, Client>()
 
     override fun create(createClientRequest: CreateClientRequest): Client {
-        val id = clientsMap.values.size.toLong()
+        val id = clientsMap.values.size.toLong() + 1
         val client = Client(
             id = id,
             firstName = createClientRequest.firstName,

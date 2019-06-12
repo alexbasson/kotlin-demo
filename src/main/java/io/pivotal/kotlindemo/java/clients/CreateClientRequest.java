@@ -1,9 +1,9 @@
 package io.pivotal.kotlindemo.java.clients;
 
 public class CreateClientRequest {
-    private final String firstName;
-    private final String lastName;
-    private final String email;
+    private String firstName;
+    private String lastName;
+    private String email;
 
     public CreateClientRequest(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -11,15 +11,30 @@ public class CreateClientRequest {
         this.email = email;
     }
 
+    public CreateClientRequest() {
+    }
+
     public String getFirstName() {
         return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

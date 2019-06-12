@@ -5,3 +5,11 @@ export interface Account {
   nickname: string;
   type: string;
 }
+
+export interface CreateAccountRequest {
+  clientId: string;
+  number: string;
+  fullname: string;
+  nickname: string;
+  type: string;
+}

@@ -8,7 +8,7 @@ class DefaultAccountRepository : AccountRepository {
     private val accountsMap = HashMap<Long, Account>()
 
     override fun create(createAccountRequest: CreateAccountRequest): Account {
-        val id = accountsMap.size.toLong()
+        val id = accountsMap.size.toLong() + 1
         val account = Account(
             id = id,
             clientId = createAccountRequest.clientId,

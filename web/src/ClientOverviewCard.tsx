@@ -2,9 +2,11 @@ import * as React from 'react';
 import {ReactElement} from 'react';
 import './Card.css';
 import './ClientOverviewCard.css';
-import {ClientService, GetClientOverviewsResultHandler} from './ClientService';
+import {ClientService, CreateClientResultHandler, GetClientOverviewsResultHandler} from './ClientService';
 import {ClientOverviewRow} from './ClientOverviewRow';
 import {ClientOverview} from './ClientOverview';
+import {Client} from './Client';
+import {CreateClientForm} from './CreateClientForm';
 
 interface Props {
   clientService: ClientService;
@@ -12,15 +14,21 @@ interface Props {
 
 interface State {
   clientOverviews: ClientOverview[];
+  displayForm: boolean;
 }
 
-export class ClientOverviewCard extends React.Component<Props, State> implements GetClientOverviewsResultHandler {
+export class ClientOverviewCard
+  extends React.Component<Props, State>
+  implements GetClientOverviewsResultHandler, CreateClientResultHandler {
 
   constructor(props: Props) {
     super(props);
     this.state = {
-      clientOverviews: []
-    }
+      clientOverviews: [],
+      displayForm: false,
+    };
+
+    this.toggleDisplayForm = this.toggleDisplayForm.bind(this);
   }
 
   componentDidMount(): void {
@@ -30,7 +38,12 @@ export class ClientOverviewCard extends React.Component<Props, State> implements
   render(): ReactElement {
     return (
       <div className="card client-overview-card">
-        <h3>Clients</h3>
+        <div className="card-header fdr fjb">
+          <h3>Clients</h3>
+          <button onClick={this.toggleDisplayForm}>
+            +
+          </button>
+        </div>
         <ul>
           <li className="border-bottom">
             <p className="strong align-left">Name</p>
@@ -44,12 +57,31 @@ export class ClientOverviewCard extends React.Component<Props, State> implements
             />
           )}
         </ul>
+
+        {
+          this.state.displayForm ?
+            <CreateClientForm
+              clientService={this.props.clientService}
+              createClientResultHandler={this}
+            />
+            :
+            ''
+        }
       </div>
     );
   }
 
+  toggleDisplayForm() {
+    this.setState({displayForm: !this.state.displayForm});
+  }
+
   success(clients: ClientOverview[]) {
     this.setState({clientOverviews: clients});
+  }
+
+  createdClient(client: Client): void {
+    this.setState({displayForm: false});
+    this.props.clientService.getClientOverviews(this);
   }
 
 }

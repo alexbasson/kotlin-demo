@@ -6,9 +6,14 @@
   border-style: solid;
 }
 
-.card h3 {
+.card-header {
   margin: 0;
   padding: 10px 5px;
   background-color: teal;
   color: white;
+}
+
+.card h3 {
+  margin: 0;
+  padding: 0;
 }

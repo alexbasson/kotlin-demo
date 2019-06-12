@@ -38,3 +38,20 @@ p {
 .align-right {
   text-align: right;
 }
+
+.mb-m {
+  margin-bottom: 5px;
+}
+
+.fdr {
+  display: flex;
+  flex-direction: row;
+}
+
+.fjb {
+  justify-content: space-between;
+}
+
+.fjc {
+  justify-content: center;
+}

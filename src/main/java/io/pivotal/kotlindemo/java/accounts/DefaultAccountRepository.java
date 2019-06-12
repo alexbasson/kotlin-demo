@@ -21,7 +21,7 @@ public class DefaultAccountRepository implements AccountRepository {
 
     @Override
     public Account create(CreateAccountRequest createAccountRequest) {
-        Long id = (long) accountMap.values().size();
+        Long id = (long) accountMap.values().size() + 1;
         Account account = new Account(
             id,
             createAccountRequest.getClientId(),

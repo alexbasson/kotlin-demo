@@ -14,7 +14,7 @@ const App: React.FC = () => {
   const clientService = new DefaultClientService();
   const accountService = new DefaultAccountService();
 
-  const clientList = () => <ClientOverviewCard clientService={clientService}/>
+  const clientOverview = () => <ClientOverviewCard clientService={clientService}/>
   const clientDetail = ({match}: RouteComponentProps<ClientDetailMatchParams>) =>
     <ClientDetail clientId={match.params.clientId} clientService={clientService} accountService={accountService}/>;
 
@@ -22,8 +22,8 @@ const App: React.FC = () => {
     <div className="App">
       <h1>Kotlin Demo</h1>
       <Router>
-        <Route exact={true} path="/" component={clientList}/>
-        <Route exact={true} path="/clients" component={clientList}/>
+        <Route exact={true} path="/" component={clientOverview}/>
+        <Route exact={true} path="/clients" component={clientOverview}/>
         <Route path="/clients/:clientId" component={clientDetail}/>
       </Router>
     </div>

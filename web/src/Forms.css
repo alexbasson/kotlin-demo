@@ -1,0 +1,36 @@
+form {
+  width: 400px;
+  padding: 5px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  border: 1px solid gray;
+  border-radius: 6px;
+  width: 200px;
+  height: 15px;
+  padding: 5px;
+}
+
+.input-group select {
+  width: 212px;
+  height: 27px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.btn {
+  padding: 0 40px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: teal;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}

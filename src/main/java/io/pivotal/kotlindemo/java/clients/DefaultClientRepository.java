@@ -17,7 +17,7 @@ public class DefaultClientRepository implements ClientRepository {
 
     @Override
     public Client create(CreateClientRequest createClientRequest) {
-        Long id = (long) clientsMap.values().size();
+        Long id = (long) clientsMap.values().size() + 1;
         Client client = new Client(
             id,
             createClientRequest.getFirstName(),
